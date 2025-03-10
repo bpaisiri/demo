@@ -4,13 +4,19 @@ public class LibraryManagementApp {
     public static void main(String[] args) {
         Scanner scanner = new Scanner(System.in);
         Library library = new Library();
-        
+
+        // Add some books to the library
+        library.addBook(new Book(1, "Java Basics", "John Doe"));
+        library.addBook(new Book(2, "Advanced Java", "Jane Smith"));
+
         while (true) {
             System.out.println("\nLibrary Management System");
             System.out.println("1. Add Book");
             System.out.println("2. Display Books");
             System.out.println("3. Search Book by Title");
-            System.out.println("4. Exit");
+            System.out.println("4. Register User");
+            System.out.println("5. Borrow Book");
+            System.out.println("6. Exit");
             System.out.print("Choose an option: ");
             
             int choice = scanner.nextInt();
@@ -43,6 +49,27 @@ public class LibraryManagementApp {
                     break;
 
                 case 4:
+                    // Register User
+                    System.out.print("Enter user ID: ");
+                    int userId = scanner.nextInt();
+                    scanner.nextLine();  // Consume newline
+                    System.out.print("Enter user name: ");
+                    String userName = scanner.nextLine();
+                    library.addUser(new User(userId, userName));
+                    System.out.println("User registered successfully!");
+                    break;
+
+                case 5:
+                    // Borrow Book
+                    System.out.print("Enter user ID: ");
+                    int borrowUserId = scanner.nextInt();
+                    scanner.nextLine();  // Consume newline
+                    System.out.print("Enter book title to borrow: ");
+                    String borrowBookTitle = scanner.nextLine();
+                    library.borrowBook(borrowUserId, borrowBookTitle);
+                    break;
+
+                case 6:
                     // Exit
                     System.out.println("Exiting system...");
                     scanner.close();
